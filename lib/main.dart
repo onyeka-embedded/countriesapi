@@ -1,24 +1,56 @@
 import 'package:countriesapp/screens/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'const/theme_data.dart';
+import 'provider/theme_provider.dart';
+import 'screens/detail_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+   MyApp({super.key});
+
+DarkThemeProvider themeChangeProvider = DarkThemeProvider();
+    void getCurrentAppTheme() async {
+    themeChangeProvider.setDarkTheme =
+        await themeChangeProvider.darkThemePrefs.getTheme();
+  }
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-      
-        primarySwatch: Colors.blue,
-      ),
-      home: const MainScreen(),
-    );
+  Widget build(BuildContext context) {  
+    return MultiProvider(
+             providers: [
+                   ChangeNotifierProvider(create: (_) {
+                   return themeChangeProvider;
+                           }),
+                      ],
+      child: ScreenUtilInit(
+        designSize: const Size(428.0, 926.0,),  
+         builder: (context, index) => Consumer<DarkThemeProvider>(
+           builder: (context, themeProvider, child) {
+             return MaterialApp(
+                builder: (context, widget){
+                  return MediaQuery(
+                    data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                    child: widget!,
+                  );
+                },
+                    debugShowCheckedModeBanner: false,
+                    title: 'Flutter Demo',
+                    theme: Themes.light,
+                     themeMode: themeProvider.themeMode,
+                     darkTheme: Themes.dark,
+                home: const MainScreen(),
+              );
+           }
+         ),
+         ),
+      );  
+      }
   }
-}
 
