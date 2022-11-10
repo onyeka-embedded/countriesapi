@@ -3,13 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:card_swiper/card_swiper.dart';
-import '../const/app_color.dart';
-import '../custom_widgets/country_widget.dart';
+import '../provider/countries_provider.dart';
 import '../provider/theme_provider.dart';
 
-class DetailScreen extends StatelessWidget {
-  const DetailScreen({ Key? key }) : super(key: key);
+class DetailScreen extends StatefulWidget {
+  const DetailScreen({ Key? key, required this.name }) : super(key: key);
+  final String name;
 
+  @override
+  State<DetailScreen> createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends State<DetailScreen> {
+
+   @override
+   initState()  {
+    // TODO: implement initState
+    final _Countiesrovider = Provider.of<CountriesProvider>(context, listen: false);
+     _Countiesrovider.getAllCountryByName(widget.name);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,24 +78,28 @@ class DetailScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 18.h),
 
-                    const DetailWidget(
-                      population: "77,354", 
-                      region: "Europe", 
-                      capital: "capital", 
-                      motto: "motto", 
-                      officialLang: "officialLang", 
-                      ethnicGroup: "ethnicGroup", 
-                      religion: "religion", 
-                      govt: "govt",
-                       independence: "independence",
-                        area: "area", 
-                        currency: "currency", 
-                        gdp: "gdp", 
-                        timeZone: "timeZone", 
-                        dateFormat: "dateFormat",
-                         dailingCode: "dailingCode", 
-                         drivingSide: "drivingSide"
-                         )
+                    Consumer<CountriesProvider>(
+                builder: (BuildContext context, countriesDataByName, child) {
+                        return DetailWidget(
+                          population: countriesDataByName.countryByNameList.length > 0 ? countriesDataByName.countryByNameList[0].name.official.toString() : "no data", 
+                          region: "Europe", 
+                          capital: "capital", 
+                          motto: "motto", 
+                          officialLang: "officialLang", 
+                          ethnicGroup: "ethnicGroup", 
+                          religion: "religion", 
+                          govt: "govt",
+                           independence: "independence",
+                            area: "area", 
+                            currency: "currency", 
+                            gdp: "gdp", 
+                            timeZone: "timeZone", 
+                            dateFormat: "dateFormat",
+                             dailingCode: "dailingCode", 
+                             drivingSide: "drivingSide"
+                             );
+                      }
+                    )
                   
                   ]
                 );

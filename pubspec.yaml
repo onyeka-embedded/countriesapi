@@ -39,6 +39,7 @@ dependencies:
   provider: ^6.0.4
   shared_preferences: ^2.0.15
   card_swiper: ^2.0.4
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
@@ -64,7 +65,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/ex_logo.png
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -78,11 +79,11 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  fonts:
+    - family: Axiforma
+      fonts:
+        - asset: assets/fonts/Axiforma-Regular.ttf
+        - asset: assets/fonts/Axiforma-Black.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

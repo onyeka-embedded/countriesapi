@@ -1,3 +1,4 @@
+import 'package:countriesapp/provider/countries_provider.dart';
 import 'package:countriesapp/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +29,9 @@ DarkThemeProvider themeChangeProvider = DarkThemeProvider();
                    ChangeNotifierProvider(create: (_) {
                    return themeChangeProvider;
                            }),
+                         ChangeNotifierProvider(create: (_){
+                           return CountriesProvider();
+                         }),
                       ],
       child: ScreenUtilInit(
         designSize: const Size(428.0, 926.0,),  
