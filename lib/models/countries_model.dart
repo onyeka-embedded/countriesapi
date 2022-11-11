@@ -7,23 +7,32 @@ class CountriesModel{
   String capital;
   String flag;
   Flags flags;
-  //int popolation;
-  //String region;
-  //Languages languages;
-  //bool independent;
-  //int area;
+  int population;
+  String region;
+  Map <String, dynamic>? languages;
+  Map <String, dynamic>? idd;
+  Map <String, dynamic> car;
+  Map <String, dynamic>? currencies;
+  bool? independent;
+  double area;
  // currencies currencies;
+  List <dynamic> timezones;
 
 
     CountriesModel({
       required this.name,
       required this.capital,
       required this.flag,
-      required this.flags
-      //required this.popolation,
-      //required this.region,
-      //required this.independent,
-      //required this.area
+      required this.flags,
+      required this.population,
+      required this.region,
+      required this.independent,
+      required this.area,
+      required this.car,
+      required this.timezones,
+      required this.languages,
+      required this.idd,
+      required this.currencies
         });
 
       factory CountriesModel.fromJson(Map<String, dynamic> json){
@@ -33,11 +42,15 @@ class CountriesModel{
           capital: json["capital"].toString(),
           flag:  json["flag"] ??  "",
           flags: Flags.fromJson(json["flags"]),
-         // popolation: json["population"] ??  0,
-         // region:  json["region"] ??  "",
-         // independent:  json["independent"],
-         // area:  json["area"] ??  0,
-          
+          population: json["population"] ??  0,
+           region:  json["region"] ??  "",
+          independent:  json["independent"],
+          area:  json["area"] ??  0,
+          car: json["car"],
+          languages: json["languages"],
+          timezones: json["timezones"],
+          idd: json["idd"],
+          currencies: json["currencies"],
         );
       }
 
@@ -83,3 +96,23 @@ class Flags {
         svg: json["svg"],
       );
   }
+
+  class Languages {
+  Languages({
+    required this.eng,
+    //required this.hin,
+    //required this.tam,
+  });
+
+  String eng;
+  //String hin;
+  //String tam;
+
+  factory Languages.fromJson(Map<String, dynamic> json) => Languages(
+        eng: json["eng"],
+      //  hin: json["hin"],
+        //tam: json["tam"],
+
+      );
+  }
+

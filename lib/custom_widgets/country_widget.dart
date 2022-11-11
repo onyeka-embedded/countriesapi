@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+//import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../const/app_color.dart';
 
 class CountryWidget extends StatelessWidget {
   const CountryWidget({ Key? key, required this.countryName, required this.capital, required this.color_1, required this.color_2, required this.image }) : super(key: key);
@@ -24,23 +22,24 @@ class CountryWidget extends StatelessWidget {
               height: 40.h,
              width: 40.h,
              decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: Colors.grey.shade100,
                       borderRadius: BorderRadius.circular(5),
                       image: DecorationImage(
                         image: NetworkImage(image),
+                        fit: BoxFit.cover
                         )
                     ),
                     //child: Image.network(image, fit: BoxFit.fill),
           ),
             SizedBox(width: 14.w,),
           Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
             children: [
              // const Text("A"),
              // SizedBox(height: 18.h,),
-              Text(countryName, style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w100, color: color_1, fontFamily: "Axiforma-Regular" ),),
-              Text(capital, style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w100, color: color_2, fontFamily: "Axiforma" ),),
+              Text(countryName, style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w400, color: color_1, fontFamily: "Axiforma-Regular" ),),
+              Text(capital, style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w400, color: color_2, fontFamily: "Axiforma" ),),
             ]
           )
         ],

@@ -69,7 +69,7 @@ class DetailWidget extends StatelessWidget {
              ),
                 Row(
                children: [
-               Text("Population:  ", style: _headingStyle(),),
+               Text("Motto:  ", style: _headingStyle(),),
               Text(motto, style: _valueStyle(),),
                ],
              ),
