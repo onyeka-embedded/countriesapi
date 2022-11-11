@@ -7,6 +7,7 @@ and their capitals with details about the countries; details like :
 - area size
 - Timezones
 - Currencies etc.
+
 User can search for a country by scrolling to the desired country and
 by clicking on any country the detail page will be shown.
 
