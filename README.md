@@ -28,6 +28,9 @@ and the overall app state management.
 ## Challenges faced and how it was solved
 - Receiving data through the API: I solved the problem with the help of other interns and stack overflow
 
-
 ## Future features
 - voice search 🔍 feature
+
+## APK link
+
+## Appetize link
