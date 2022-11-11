@@ -35,4 +35,4 @@ and the overall app state management.
 ## APK link
 
 ## Appetize link
- https://appetize.io/app/2he3e2kp5qhe6gessytjogzvd4?device=pixel4&osVersion=11.0&scale=75 [temporary link, still working on the app]
+ https://appetize.io/app/vakl33bwspxl3yemkvdv2rlfki?device=pixel4&osVersion=11.0&scale=75 [temporary link, still working on the app]
