@@ -38,8 +38,8 @@ class CountryWidget extends StatelessWidget {
             children: [
              // const Text("A"),
              // SizedBox(height: 18.h,),
-              Text(countryName, style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w400, color: color_1, fontFamily: "Axiforma-Regular" ),),
-              Text(capital, style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w400, color: color_2, fontFamily: "Axiforma" ),),
+              Text(countryName, style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400, color: color_1, fontFamily: "Axiforma-Regular" ),),
+              Text(capital, style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400, color: color_2, fontFamily: "Axiforma" ),),
             ]
           )
         ],

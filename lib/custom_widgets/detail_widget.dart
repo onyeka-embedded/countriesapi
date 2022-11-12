@@ -154,7 +154,7 @@ class DetailWidget extends StatelessWidget {
     );
   }
 
-  TextStyle _valueStyle() => TextStyle(fontSize: 10.sp, fontWeight: FontWeight.normal,fontFamily: "Axiforma" );
+  TextStyle _valueStyle() => TextStyle(fontSize: 14.sp, fontWeight: FontWeight.normal,fontFamily: "Axiforma" );
 
-  TextStyle _headingStyle() => TextStyle(fontSize: 10.sp, fontWeight: FontWeight.normal, fontFamily: "Axiforma" );
+  TextStyle _headingStyle() => TextStyle(fontSize: 14.sp, fontWeight: FontWeight.normal, fontFamily: "Axiforma" );
 }

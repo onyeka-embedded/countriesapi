@@ -9,26 +9,26 @@ class CountriesProvider with ChangeNotifier{
     late List <CountriesModel>? _searchResult = [];
     late List <CountriesModel>? _finalList = [];
   CountriesApiService countriesApiService = CountriesApiService();
-  //bool isLoading = false;
+  bool _isLoading = true;
     get countryData  =>  _searchResult!.isEmpty ? _countryList : _searchResult;
     get countryByNameList  => _countryByNameList;
-   // get isLoading => _isLoading;
+    get isLoading => _isLoading;
 
 
   getAllCountriesData() async {
-      //isLoading = true;
-   //notifyListeners();
+      //_isLoading = true;
+    //notifyListeners();
     _countryList = (await countriesApiService.getAllCountries());
     _countryList!.sort((a, b) => a.name.common.toLowerCase().compareTo(b.name.common.toLowerCase().toString()));
-   // isLoading =  false;
+   _isLoading =  false;
     notifyListeners();
   }
 
   getAllCountryByName(String name) async {
-      //isLoading = true;
+     // isLoading = true;
    //notifyListeners();
     _countryByNameList = (await countriesApiService.getCountryBName(name));
-   // isLoading =  false;
+    //isLoading =  false;
     notifyListeners();
   }
 

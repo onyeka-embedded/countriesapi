@@ -13,26 +13,35 @@ import '../provider/theme_provider.dart';
 import '../services/countries_api.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({ Key? key }) : super(key: key);
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
-  late List <CountriesModel>? datar = [];
+  late List<CountriesModel>? datar = [];
   CountriesApiService countriesApiService = CountriesApiService();
   TextEditingController _searchController = TextEditingController();
   late FocusNode focusNode;
   @override
-   initState()  {
+  initState() {
     // TODO: implement initState
-    final countiesProvider = Provider.of<CountriesProvider>(context, listen: false);
-     countiesProvider.getAllCountriesData();
-     focusNode = FocusNode();
-   // print(_Countiesrovider.countryData[0].name.common.toString());
+    
+    focusNode = FocusNode();
     super.initState();
   }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    final countiesProvider =
+        Provider.of<CountriesProvider>(context, listen: true);
+    countiesProvider.getAllCountriesData();
+    super.didChangeDependencies();
+  }
+  
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -43,193 +52,202 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-     final _provider = Provider.of<DarkThemeProvider>(context, listen: false);
-     final _CountriesProvider = Provider.of<CountriesProvider>(context, listen: false);
-      int gv = 0;
-  
+    final _provider = Provider.of<DarkThemeProvider>(context, listen: false);
+    final _CountriesProvider =
+        Provider.of<CountriesProvider>(context, listen: false);
+    int gv = 0;
+
     return SafeArea(
       child: Scaffold(
-            body: Container(
-              margin: EdgeInsets.only(left: 24.w, right: 24.w, top: 0.h),
-              child: Consumer<DarkThemeProvider>(
-                      builder: (BuildContext context, data, child) {
-                  return SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children:[
-                        SizedBox(height: 24.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: (){
-                               // Navigator.push(context, MaterialPageRoute(builder: (context) => const DetailScreen()));
-                              },
-                              child: SizedBox(
-                                height: 25.h,
-                                width: 120.w,
-                                child:data.isDark ? Image.asset("assets/images/logo.png",
-                              fit: BoxFit.cover) : Image.asset("assets/images/ex_logo.png",
-                              fit: BoxFit.cover),
-                              ),
-                            ),
-                            GestureDetector(
+          body: Container(
+        margin: EdgeInsets.only(left: 24.w, right: 24.w, top: 0.h),
+        child: Consumer<DarkThemeProvider>(
+            builder: (BuildContext context, data, child) {
+          return SingleChildScrollView(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 24.h),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
                           onTap: () {
-                            _provider.setDarkTheme = !_provider.isDark;
-                             },
-                              child: Icon(data.isDark ? Icons.dark_mode : Icons.sunny)),
-                          ]
+                            // Navigator.push(context, MaterialPageRoute(builder: (context) => const DetailScreen()));
+                          },
+                          child: SizedBox(
+                            height: 25.h,
+                            width: 120.w,
+                            child: data.isDark
+                                ? Image.asset("assets/images/logo.png",
+                                    fit: BoxFit.cover)
+                                : Image.asset("assets/images/ex_logo.png",
+                                    fit: BoxFit.cover),
+                          ),
                         ),
-                        SizedBox(height: 20.h),
-                        
-                        SizedBox(
-                          height: 48.h,
-                          width: 380.w,
-                          child: TextField(
-                                decoration: InputDecoration(
-                                  fillColor: data.isDark ? const Color.fromRGBO(152, 162, 179, 0.2) : const Color(0xFFF2F4F7),
-                                  filled: true,
-                                  border: const OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  hintText: "Search Country",
-                                  contentPadding: EdgeInsets.zero,
-                                  hintStyle: TextStyle(
-                                    fontSize: 12,
-                                    color: data.isDark ? const Color(0xFFEAECF0) : const Color(0xFF000000),
-                                    fontFamily: "Axiforma" 
-                                  ),
-                  
-                                prefixIcon: SizedBox(child: Icon(Icons.search)),
-                                ),
-                                controller: _searchController,
-                                keyboardType: TextInputType.text,
-                                onChanged: _CountriesProvider.searchResult,
-                                 )
+                        GestureDetector(
+                            onTap: () {
+                              _provider.setDarkTheme = !_provider.isDark;
+                            },
+                            child: Icon(
+                                data.isDark ? Icons.dark_mode : Icons.sunny)),
+                      ]),
+                  SizedBox(height: 20.h),
+                  SizedBox(
+                      height: 48.h,
+                      width: 380.w,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          fillColor: data.isDark
+                              ? const Color.fromRGBO(152, 162, 179, 0.2)
+                              : const Color(0xFFF2F4F7),
+                          filled: true,
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                          hintText: "Search Country",
+                          contentPadding: EdgeInsets.zero,
+                          hintStyle: TextStyle(
+                              fontSize: 12,
+                              color: data.isDark
+                                  ? const Color(0xFFEAECF0)
+                                  : const Color(0xFF000000),
+                              fontFamily: "Axiforma"),
+                          prefixIcon: SizedBox(child: Icon(Icons.search)),
                         ),
-                        SizedBox(height: 16.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: (){
-                                showModalBottomSheet(context: context, 
-                                     backgroundColor: data.isDark ?const Color(0xFF000F24) : Colors.white,
-                                     shape: RoundedRectangleBorder(
-                                       borderRadius: BorderRadius.vertical(
-                                         top: Radius.circular(30.r)
-                                       )
-                                     ),
-                                     clipBehavior: Clip.hardEdge,
-                                      builder: (context){
-                                          return Container(
-                                            margin: EdgeInsets.only(top: 20.h, left: 30.w, right: 30.w),
-                                            height: MediaQuery.of(context).size.height * 0.7,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                topRight: Radius.circular(15.r),
-                                                topLeft: Radius.circular(15.r)
-                                              )
-                                            ),
-                                            child: Column(
-                                              children: [
-                                                  Row(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                    children: const [
-                                                      Text("Language",
-                                                        
-                                                      ),
-                                                      Icon(Icons.close),
-                                                    ],
-                                                  ),
-                                                  SizedBox(height: 12.h,),
-                                                  Expanded(
-                                                     child: ListView.builder(
-                                                       itemCount: 30,
-                                                      itemBuilder: (BuildContext context, index) {
-                                                          return radioListTileWidget(index, gv);
-                                                          
-                                                          /*Row(
-                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                            children: const [
-                                                            Text("Bahasa", 
-                                                            style: TextStyle(
-                                                                  fontSize: 14,
-                                                                  //color: data.isDark ? const Color(0xFFEAECF0) : const Color(0xFF000000),
-                                                                  fontFamily: "Axiforma" 
-                                                                ),),
-                                                          Icon(Icons.close_fullscreen_outlined),
-                                                    ],
-                                                  ); */
-                                                })),
-                                              ],
-                                            ),
-                                          );
-                                      });
-                              },
-                              child: Container(
-                                height: 40.h,
-                                width: 73.w,
-                                decoration: BoxDecoration(
-                                  color: data.isDark ? const Color(0xFF000F24): const Color(0xFFFCFCFD),
-                                  borderRadius: BorderRadius.circular(4.r),
-                                  border: Border.all(
-                                    color: data.isDark ? const Color(0xFFA9B8D5) : const Color(0xFFA9B8D5),
-                                    width: 0.2,
-                                  )
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 10.w,),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Icon(CupertinoIcons.globe, size: 25.h,),
-                                      Text("EN", style: TextStyle(fontSize: 14.sp), )
-                                    ],
-                                  ),
-                                ),
-                              ),
+                        controller: _searchController,
+                        keyboardType: TextInputType.text,
+                        onChanged: _CountriesProvider.searchResult,
+                      )),
+                  SizedBox(height: 16.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          _showModalBS(context, data, gv);
+                        },
+                        child: Container(
+                          height: 40.h,
+                          width: 73.w,
+                          decoration: BoxDecoration(
+                              color: data.isDark
+                                  ? const Color(0xFF000F24)
+                                  : const Color(0xFFFCFCFD),
+                              borderRadius: BorderRadius.circular(4.r),
+                              border: Border.all(
+                                color: data.isDark
+                                    ? const Color(0xFFA9B8D5)
+                                    : const Color(0xFFA9B8D5),
+                                width: 0.2,
+                              )),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 10.w,
                             ),
-                  
-                                  Container(
-                              height: 40.h,
-                              width: 86.w,
-                              decoration: BoxDecoration(
-                                color: data.isDark ? const Color(0xFF000F24): const Color(0xFFFCFCFD),
-                                borderRadius: BorderRadius.circular(4.r),
-                                border: Border.all(
-                                  color: const Color(0xFFA9B8D5),
-                                  width: 0.2,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(
+                                  CupertinoIcons.globe,
+                                  size: 25.h,
+                                ),
+                                Text(
+                                  "EN",
+                                  style: TextStyle(fontSize: 14.sp),
                                 )
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Icon(Icons.filter_alt_outlined, size: 25.h,),
-                                    Text("Filter",  style: TextStyle(fontSize: 14.sp))
-                                  ],
-                                ),
-                              ),
+                              ],
                             ),
-                               // CountryWidget(),
-                          ],
+                          ),
                         ),
-                          SizedBox(height: 16.h),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text("A"),
-                          SizedBox(height: 18.h,),
-                             _CountriesProvider.countryData == null ? 
+                      ),
+
+                      GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                              context: context,
+                              backgroundColor: data.isDark
+                                  ? const Color(0xFF000F24)
+                                  : Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(30.r))),
+                              clipBehavior: Clip.hardEdge,
+                              builder: (context) {
+                                return Container(
+                                    margin: EdgeInsets.only(
+                                        top: 20.h, left: 15.w, right: 15.w),
+                                   height: MediaQuery.of(context).size.height * 0.3,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(15.r),
+                                            topLeft: Radius.circular(15.r))),
+                                    child: Column(children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: const [
+                                          Text(
+                                            "Filter",
+                                            style: TextStyle(fontSize: 14),
+                                          ),
+                                          Icon(Icons.close),
+                                        ],
+                                      ),
+                                    ]));
+                              });
+                        },
+                        child: Container(
+                          height: 40.h,
+                          width: 86.w,
+                          decoration: BoxDecoration(
+                              color: data.isDark
+                                  ? const Color(0xFF000F24)
+                                  : const Color(0xFFFCFCFD),
+                              borderRadius: BorderRadius.circular(4.r),
+                              border: Border.all(
+                                color: const Color(0xFFA9B8D5),
+                                width: 0.2,
+                              )),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10.w),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(
+                                  Icons.filter_alt_outlined,
+                                  size: 25.h,
+                                ),
+                                Text("Filter",
+                                    style: TextStyle(fontSize: 14.sp))
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      // CountryWidget(),
+                    ],
+                  ),
+                  SizedBox(height: 16.h),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("A"),
+                      SizedBox(
+                        height: 18.h,
+                      ),
+                     //  _CountriesProvider.getAllCountriesData(),
+                        _CountriesProvider.isLoading
+                            ? 
                              Container(
-                            color: Colors.white,
+                               height: 639.h,
+                               width: double.maxFinite,
+                            color: data.isDark ? const Color(0xFF000F24) : Colors.white,
                               child: SpinKitThreeBounce(
                                   duration: const Duration(seconds: 1),
                                   itemBuilder: (BuildContext context, index) {
-                                    print("true");
+                                  //  print("true");
                                     return DecoratedBox(
                                       decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(15),
@@ -237,62 +255,122 @@ class _MainScreenState extends State<MainScreen> {
                                  );
                                 }),
                                )
-                             :Container(
-                                height: 639.h,
-                                width: double.maxFinite,
-                               child:Consumer<CountriesProvider>(
-                                      builder: (BuildContext context, countriesData, child) {
-                                   return ListView.builder(
-                                    // print(datar.length);
-                                     itemCount: countriesData.countryData.length,
-                                      itemBuilder: (BuildContext context, index) {
-                                        print(datar!.length);
-                                        return  GestureDetector(
-                                          onTap: (){ 
-                                            Navigator.push(context, MaterialPageRoute(builder: (context) =>  DetailScreen(name:countriesData.countryData![index].name.common.toString())));
-    
-                                          },
-                                          child: CountryWidget(
-                                            image:  countriesData.countryData[index].flags.png.toString(),
-                                            countryName: countriesData.countryData[index].name.common.toString(),
-                                            color_1: data.isDark ? AppColor.countryNameColorDark: AppColor.countryNameColorLight,
-                                            capital: countriesData.countryData[index].capital.toString().replaceAll("[", "").replaceAll("]", ""),
-                                            color_2: data.isDark ? AppColor.countryCapitalColorDark : AppColor.countryCapitalColorLightDark,),
-                                        );
-                                      });
-                                 }
-                               )
-                              ),
-                            ],
-                          )
-                      ]
-                    ),
-                  );
-                }
-              ),
-            )
-        ),
+                             :
+                      Container(
+                          height: 639.h,
+                          width: double.maxFinite,
+                          child: Consumer<CountriesProvider>(builder:
+                              (BuildContext context, countriesData, child) {
+                            return ListView.builder(
+                                // print(datar.length);
+                                itemCount: countriesData.countryData.length,
+                                itemBuilder: (BuildContext context, index) {
+                                  print(datar!.length);
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  DetailScreen(
+                                                      name: countriesData
+                                                          .countryData![index]
+                                                          .name
+                                                          .common
+                                                          .toString())));
+                                    },
+                                    child: CountryWidget(
+                                      image: countriesData
+                                          .countryData[index].flags.png
+                                          .toString(),
+                                      countryName: countriesData
+                                          .countryData[index].name.common
+                                          .toString(),
+                                      color_1: data.isDark
+                                          ? AppColor.countryNameColorDark
+                                          : AppColor.countryNameColorLight,
+                                      capital: countriesData
+                                          .countryData[index].capital
+                                          .toString()
+                                          .replaceAll("[", "")
+                                          .replaceAll("]", ""),
+                                      color_2: data.isDark
+                                          ? AppColor.countryCapitalColorDark
+                                          : AppColor
+                                              .countryCapitalColorLightDark,
+                                    ),
+                                  );
+                                });
+                          })),
+                    ],
+                  )
+                ]),
+          );
+        }),
+      )),
     );
   }
 
-  RadioListTile<int> radioListTileWidget(int index, int gv) {
-    return RadioListTile(
-      title: const Text(
-        "French",
-        style: TextStyle(
-            fontSize: 14,
-            //color: data.isDark ? const Color(0xFFEAECF0) : const Color(0xFF000000),
-            fontFamily: "Axiforma"),
-      ),
-      value: index,
-      groupValue: gv,
-      onChanged: (val) {
-        setState(() {
-          gv = val!;
+  Future<dynamic> _showModalBS(
+      BuildContext context, DarkThemeProvider data, int gv) {
+    return showModalBottomSheet(
+        context: context,
+        backgroundColor: data.isDark ? const Color(0xFF000F24) : Colors.white,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(30.r))),
+        clipBehavior: Clip.hardEdge,
+        builder: (context) {
+          return Container(
+            margin: EdgeInsets.only(top: 20.h, left: 15.w, right: 15.w),
+            height: MediaQuery.of(context).size.height * 0.8,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(15.r),
+                    topLeft: Radius.circular(15.r))),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    //SizedBox(width: 1.w,),
+                    Text(
+                      "Language",
+                      style: TextStyle(fontSize: 14),
+                    ),
+                    Icon(Icons.close),
+                  ],
+                ),
+                SizedBox(
+                  height: 12.h,
+                ),
+                Expanded(
+                    child: ListView.builder(
+                        itemCount: 30,
+                        padding: EdgeInsets.all(0),
+                        itemBuilder: (BuildContext context, index) {
+                          return RadioListTile(
+                            contentPadding: EdgeInsets.all(0),
+                            title: const Text(
+                              "French",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  //color: data.isDark ? const Color(0xFFEAECF0) : const Color(0xFF000000),
+                                  fontFamily: "Axiforma"),
+                            ),
+                            value: index,
+                            groupValue: gv,
+                            onChanged: (val) {
+                              setState(() {
+                                gv = val!;
+                              });
+                            },
+                            activeColor: Colors.amber,
+                            controlAffinity: ListTileControlAffinity.trailing,
+                          );
+                        })),
+              ],
+            ),
+          );
         });
-      },
-      activeColor: Colors.amber,
-      controlAffinity: ListTileControlAffinity.trailing,
-    );
   }
 }
