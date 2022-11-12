@@ -36,7 +36,7 @@ and the overall app state management.
 https://drive.google.com/folderview?id=1VNCThp8B_coc5gFOhcQVKkjhUcXBfsZT
 
 ## Appetize link
- https://appetize.io/app/s2jxpsqgphavqptve6bjczkhci?device=pixel4&osVersion=11.0&scale=75
+ https://appetize.io/app/k7ytmmqeto2p6rbvrclu6klosy?device=pixel4&osVersion=11.0&scale=75
  
  ## Screenshoots
  
