@@ -36,7 +36,7 @@ and the overall app state management.
 https://appetize.io/app/kqa4sxcfc3535jazmvspenwn4i?device=pixel4&osVersion=11.0&scale=75
 
 ## Appetize link
- https://appetize.io/app/4awfztuy4xodqhkvocxdenuzaq?device=pixel4&osVersion=11.0&scale=75
+ https://appetize.io/app/kqa4sxcfc3535jazmvspenwn4i?device=pixel4&osVersion=11.0&scale=75
  
  ## Screenshoots
  
