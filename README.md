@@ -12,7 +12,7 @@ User can search for a country by scrolling to the desired country and
 by clicking on any country the detail page will be shown.
 
 User can as well search for any desired country by using the search bar,
-sort the country by ..........
+sort the country by by continent etc
 
 ## Code description
 The code was structured using MVC pattern. The project has a model
