@@ -36,9 +36,9 @@ and the overall app state management.
 https://drive.google.com/folderview?id=1VNCThp8B_coc5gFOhcQVKkjhUcXBfsZT
 
 ## Appetize link
- https://appetize.io/app/kqa4sxcfc3535jazmvspenwn4i?device=pixel4&osVersion=11.0&scale=75
+ https://appetize.io/app/yz5tpd7mvp4w73xtpj2uxg4yj4?device=pixel4&osVersion=11.0&scale=75
  
- ## Screenshoots
+## Screenshoots
  
  ![s1](https://user-images.githubusercontent.com/85957655/201471143-fd5e0e80-ad7a-42c2-981e-f2dc58f4b5a2.jpg)
 
@@ -46,9 +46,12 @@ https://drive.google.com/folderview?id=1VNCThp8B_coc5gFOhcQVKkjhUcXBfsZT
 
 ![s3](https://user-images.githubusercontent.com/85957655/201471147-7ab6997c-b0c9-4c01-a1a4-c9c39a72ffd1.jpg)
 
+
 ![s4](https://user-images.githubusercontent.com/85957655/201555438-b5e25e31-f65f-4f65-8ddf-ce03de243470.jpg)
 
+
 ![s5](https://user-images.githubusercontent.com/85957655/201555444-2cbe97d2-fbb2-4d3b-ad8c-cac1882aff71.jpg)
+
 
 ![s6](https://user-images.githubusercontent.com/85957655/201555446-cebe9bfd-e813-449b-a78b-ba4cf5d7cff5.jpg)
 
