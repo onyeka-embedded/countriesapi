@@ -35,9 +35,10 @@ and the overall app state management.
 ## APK link
 https://drive.google.com/folderview?id=1VNCThp8B_coc5gFOhcQVKkjhUcXBfsZT
 
-## Appetize link [Please, the SEARCH RESULT and RESET button for sort by continent might not show, but you can see it
-    By scrolling down the continent widget, the widget is a listview)
- https://appetize.io/app/yz5tpd7mvp4w73xtpj2uxg4yj4?device=pixel4&osVersion=11.0&scale=75
+## Appetize link👇🏾
+https://appetize.io/app/yz5tpd7mvp4w73xtpj2uxg4yj4?device=pixel4&osVersion=11.0&scale=75
+##[Please, the SEARCH RESULT and RESET button for sort by continent might not show, but you can see it
+##By scrolling down the continent widget, the widget is a listview)
  
 ## Screenshoots
  
