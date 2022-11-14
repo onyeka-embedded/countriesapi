@@ -33,7 +33,7 @@ and the overall app state management.
 - voice search 🔍 feature
 
 ## APK link
-https://drive.google.com/folderview?id=1VNCThp8B_coc5gFOhcQVKkjhUcXBfsZT
+https://appetize.io/app/kqa4sxcfc3535jazmvspenwn4i?device=pixel4&osVersion=11.0&scale=75
 
 ## Appetize link
  https://appetize.io/app/4awfztuy4xodqhkvocxdenuzaq?device=pixel4&osVersion=11.0&scale=75
